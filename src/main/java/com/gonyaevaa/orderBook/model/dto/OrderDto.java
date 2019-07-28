@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -19,9 +20,11 @@ public class OrderDto {
     @JsonProperty("userId")
     private Long userId;
 
+    @NotNull
     @JsonProperty("totalPayment")
     private BigDecimal totalPayment;
 
+    @NotNull
     @JsonProperty("books")
     private List<Long> bookDtoList;
 
