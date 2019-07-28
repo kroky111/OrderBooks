@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet id="2019-07-25-initial-schema-1" author="Andrey">
+        <createTable tableName="books">
+            <column autoIncrement="true" name="book_id" type="bigserial">
+                <constraints primaryKey="true" primaryKeyName="books_pkey"/>
+            </column>
+            <column name="price" type="numeric(19, 2)"/>
+            <column name="title" type="varchar(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="2019-07-25-initial-schema-2" author="Andrey">
+        <createTable tableName="orders">
+            <column autoIncrement="true" name="order_id" type="bigserial">
+                <constraints primaryKey="true" primaryKeyName="orders_pkey"/>
+            </column>
+            <column name="status" type="varchar(255)"/>
+            <column name="user_id" type="bigint"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="2019-07-25-initial-schema-3" author="Andrey">
+        <createTable tableName="orders_books">
+            <column name="order_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="book_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="2019-07-25-initial-schema-4" author="Andrey">
+        <createTable tableName="users">
+            <column autoIncrement="true" name="user_id" type="bigserial">
+                <constraints primaryKey="true" primaryKeyName="users_pkey"/>
+            </column>
+            <column name="first_name" type="varchar(255)"/>
+            <column name="last_name" type="varchar(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="2019-07-25-initial-schema-5" author="Andrey">
+        <addForeignKeyConstraint baseTableName="orders_books"
+                                 baseColumnNames="book_id"
+                                 constraintName="fk_order_book_book"
+                                 referencedTableName="books"
+                                 referencedColumnNames="book_id"/>
+    </changeSet>
+    <changeSet id="2019-07-25-initial-schema-6" author="Andrey">
+        <addForeignKeyConstraint baseTableName="orders_books"
+                                 baseColumnNames="order_id"
+                                 constraintName="fk_order_book_order"
+                                 referencedTableName="orders"
+                                 referencedColumnNames="order_id"/>
+    </changeSet>
+    <changeSet id="2019-07-25-initial-schema-7" author="Andrey">
+        <addForeignKeyConstraint baseTableName="orders"
+                                 baseColumnNames="user_id"
+                                 constraintName="fk_order_user"
+                                 referencedTableName="users"
+                                 referencedColumnNames="user_id"/>
+    </changeSet>
+</databaseChangeLog>
