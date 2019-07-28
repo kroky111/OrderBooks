@@ -19,6 +19,7 @@
 		<lambok.version>1.16.18</lambok.version>
 		<xml.bind>2.3.0</xml.bind>
 		<mapstruct.version>1.3.0.Beta2</mapstruct.version>
+		<swagger.version>2.8.0</swagger.version>
 	</properties>
 
 	<dependencies>
@@ -86,6 +87,19 @@
 		<dependency>
 			<groupId>org.liquibase</groupId>
 			<artifactId>liquibase-core</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger-ui</artifactId>
+			<version>${swagger.version}</version>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger2</artifactId>
+			<version>${swagger.version}</version>
+			<scope>compile</scope>
 		</dependency>
 
 		<dependency>
